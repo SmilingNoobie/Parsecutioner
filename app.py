@@ -1,7 +1,3 @@
-# ==================== app/app.py ====================
-import sys
-sys.modules["torch._classes"] = None
-
 import streamlit as st
 import os
 import json
@@ -13,9 +9,52 @@ from src.ai_feedback import get_self_feedback, get_example_feedback
 # Page config
 st.set_page_config(page_title="Parsecutioner | CV Parser & Ranking", layout="wide")
 
+# Inject custom CSS for global styling
+st.markdown(
+    """
+    <style>
+        /* Global background */
+        .stApp {
+            background-color: #FFFFFF;
+        }
+        /* Header styling */
+        h1 {
+            color: #0A1F44;
+        }
+        /* Subheaders */
+        h2, h3 {
+            color: #4A90E2;
+        }
+        /* Buttons */
+        .stButton>button {
+            background-color: #4A90E2;
+            color: white;
+            border-radius: 8px;
+            padding: 0.6em 1.2em;
+            font-weight: bold;
+        }
+        .stButton>button:hover {
+            background-color: #3B7BBF;
+        }
+        /* Sidebar header */
+        .css-1d391kg {
+            color: #4A90E2;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        /* Expander style */
+        .streamlit-expanderHeader {
+            background-color: #F5F8FA;
+            border-radius: 4px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Main header
 st.markdown("""
-<div style="text-align:center; padding:2rem 1rem;">
+<div style="text-align:center; margin-top:1rem;">
     <h1>🚀 Welcome to Parsecutioner: Your CV Parser & Ranker</h1>
     <p style="font-size:1.1rem; color:#555;">Upload a job description and your own CV, then choose to analyze against example datasets or upload new CVs.</p>
 </div>
@@ -23,15 +62,14 @@ st.markdown("""
 
 # Sidebar options
 with st.sidebar:
-    st.header('📂 Options')
+    st.markdown("<h2>📂 Options</h2>", unsafe_allow_html=True)
     mode = st.radio("Mode", ["Upload New CVs", "Use Existing CVs"] )
     job_file = st.file_uploader('Job Description (TXT)', type=['txt'])
     self_cv = st.file_uploader('Your CV (PDF)', type=['pdf'])
     if mode == "Upload New CVs":
         cvs_files = st.file_uploader('Example CVs (PDF)', type=['pdf'], accept_multiple_files=True)
     else:
-        role = st.selectbox("Select Role Dataset",
-                            ["Software Engineer", "Data Analyst", "Cybersecurity Specialist"] )
+        role = st.selectbox("Select Role Dataset", ["Software Engineer", "Data Analyst", "Cybersecurity Specialist"] )
     analyze_button = st.button('🔎 Analyze')
 
 # Main logic
@@ -61,9 +99,7 @@ if analyze_button:
                 cv_texts = {'overall': text, **{k:['\n'.join(v)] for k,v in segs.items()}}
                 _, cv_emb = aggregate_embeddings(jd_text, cv_texts)
                 score = score_cv(jd_emb, cv_emb)
-                label = score_to_label(score)
-                reasons = get_example_feedback(jd_text, text)
-                feedback_str = get_scale_feedback(score) + f"\n{reasons}"
+                feedback_str = get_scale_feedback(score) + "\n" + get_example_feedback(jd_text, text)
                 example_results.append((score, feedback_str))
             example_results = sorted(example_results, key=lambda x: x[0], reverse=True)[:5]
 
