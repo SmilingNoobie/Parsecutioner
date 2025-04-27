@@ -1,0 +1,9 @@
+streamlit
+sentence-transformers
+pdfplumber
+nltk
+rapidfuzz
+requests
+openai
+pytest
+fpdf
