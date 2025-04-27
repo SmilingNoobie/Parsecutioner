@@ -1,6 +1,3 @@
-Here's a sample GitHub README file for your project:
-
----
 
  Parsecutioner - CV Parser, Analyzer, and Advisor
 
