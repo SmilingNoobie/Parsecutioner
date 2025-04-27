@@ -1,0 +1,23 @@
+{
+  "software_engineer": [
+    {"score": 0.95, "reasons": "1. Strong Python experience. 2. Demonstrated AWS usage. 3. Good algorithmic projects."},
+    {"score": 0.92, "reasons": "1. Solid Java skills. 2. Microservices knowledge. 3. Clean code examples."},
+    {"score": 0.90, "reasons": "1. Full-stack projects. 2. CI/CD pipeline experience. 3. Docker & Kubernetes."},
+    {"score": 0.88, "reasons": "1. Good data structures. 2. REST API expertise. 3. Unit tests included."},
+    {"score": 0.85, "reasons": "1. Front-end React work. 2. Node.js backend. 3. Agile methodology exposure."}
+  ],
+  "data_analyst": [
+    {"score": 0.93, "reasons": "1. Advanced SQL queries. 2. Python pandas. 3. Data visualization with Tableau."},
+    {"score": 0.91, "reasons": "1. Excel modeling. 2. R programming. 3. Statistical analysis."},
+    {"score": 0.89, "reasons": "1. ETL process design. 2. BI tool integration. 3. Dashboard creation."},
+    {"score": 0.87, "reasons": "1. Machine learning basics. 2. SAS usage. 3. Data cleaning expertise."},
+    {"score": 0.84, "reasons": "1. Data warehousing. 2. BigQuery experience. 3. Data storytelling."}
+  ],
+  "cybersecurity_specialist": [
+    {"score": 0.94, "reasons": "1. Penetration testing. 2. Network security. 3. Vulnerability assessments."},
+    {"score": 0.92, "reasons": "1. SIEM tools. 2. Incident response. 3. Log analysis."},
+    {"score": 0.90, "reasons": "1. Firewall configuration. 2. IDS/IPS expertise. 3. Compliance knowledge."},
+    {"score": 0.88, "reasons": "1. Ethical hacking. 2. Security protocols. 3. Encryption standards."},
+    {"score": 0.86, "reasons": "1. Secure coding. 2. Threat modeling. 3. SOC operations."}
+  ]
+}
